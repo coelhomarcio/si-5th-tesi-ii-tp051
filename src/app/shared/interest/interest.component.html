@@ -1,0 +1,80 @@
+<main>
+  <h2>{{ obj.subTitle }}</h2>
+  <section class="simulation">
+    <h3>Simulação</h3>
+    <form (ngSubmit)="submit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Valor inicial</mat-label>
+        <mat-hint *ngIf="error(capital, 1)">0,01 a 1.000.000,00</mat-hint>
+        <span matPrefix>R$&nbsp;&nbsp;</span>
+        <input matInput type="text" [(ngModel)]="capital" name="capital" mask="separator.2" thousandSeparator=".">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Taxa de juros</mat-label>
+        <mat-hint *ngIf="error(fee, 2)">0.01 a 100</mat-hint>
+        <span matSuffix>%</span>
+        <input matInput type="text" [(ngModel)]="fee" name="fee" mask="percent.2">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Período</mat-label>
+        <span matSuffix>&nbsp;&nbsp;&nbsp;meses</span>
+        <mat-select [(ngModel)]="period" name="period">
+          <mat-option>6 a 36 meses</mat-option>
+          <mat-option *ngFor="let period of periods" [value]="period">{{ period }}</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="error(period, 3)">Selecione uma opção</mat-hint>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="warn" [ngClass]="enableBtn()">Calcular</button>
+    </form>
+  </section>
+  <section class="success">
+    <h3>Resultado</h3>
+    <div class="result">
+      <div><h4>Valor inicial</h4>
+        <p>{{ capital | currency }}</p></div>
+      <div><h4>Taxa de juros</h4>
+        <p>{{ fee }}%</p></div>
+      <div><h4>Período</h4>
+        <p>{{ period }} meses</p></div>
+      <div><h4>Juros</h4>
+        <p>{{ this.amount - this.capital | currency }}</p></div>
+      <div><h4>Valor acumulado</h4>
+        <p>{{ amount | currency }}</p></div>
+    </div>
+    <div class="evolution">
+      <h4>Evolução</h4>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="tableData">
+          <ng-container matColumnDef="month">
+            <th mat-header-cell *matHeaderCellDef>Mês</th>
+            <td mat-cell *matCellDef="let cell">{{ cell.month }}</td>
+          </ng-container>
+          <ng-container matColumnDef="reference">
+            <th mat-header-cell *matHeaderCellDef>Valor de referência</th>
+            <td mat-cell *matCellDef="let cell">{{ cell.reference | currency }}</td>
+          </ng-container>
+          <ng-container matColumnDef="fee">
+            <th mat-header-cell *matHeaderCellDef>Taxa de juros</th>
+            <td mat-cell *matCellDef="let cell">{{ cell.fee }}%</td>
+          </ng-container>
+          <ng-container matColumnDef="interest">
+            <th mat-header-cell *matHeaderCellDef>Juros</th>
+            <td mat-cell *matCellDef="let cell">{{ cell.interest | currency }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Valor acumulado</th>
+            <td mat-cell *matCellDef="let cell">{{ cell.amount | currency }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+        </table>
+<!--        <mat-paginator showFirstLastButtons-->
+<!--                       [length]="period"-->
+<!--                       [pageSize]="6"-->
+<!--                       [pageSizeOptions]="periods.slice(0, period / 6)">-->
+<!--        </mat-paginator>-->
+      </div>
+      <button mat-raised-button color="warn" (click)="back()">Voltar</button>
+    </div>
+  </section>
+</main>
