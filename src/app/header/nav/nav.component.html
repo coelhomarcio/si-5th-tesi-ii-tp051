@@ -1,0 +1,12 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+  <a mat-menu-item *ngFor="let listItem of navList" routerLink="{{ listItem.link }}"
+     routerLinkActive="active">{{ listItem.label }}</a>
+</mat-menu>
+<mat-nav-list>
+  <mat-list-item *ngFor="let listItem of navList">
+    <a mat-list-item routerLink="{{ listItem.link }}" routerLinkActive="active">{{ listItem.label }}</a>
+  </mat-list-item>
+</mat-nav-list>
