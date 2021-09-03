@@ -1,0 +1,12 @@
+<main>
+  <h2>{{ subTitle }}</h2>
+  <section>
+    <h3>{{ name }} | RA {{ ra }}</h3>
+    <p *ngFor="let git of gits">
+      <a href="{{ git.link }}" target="_blank">
+        <span>{{ git.label }}</span>
+        <mat-icon aria-hidden="false" aria-label="">launch</mat-icon>
+      </a>
+    </p>
+  </section>
+</main>

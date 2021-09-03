@@ -1,0 +1,32 @@
+section {
+  p {
+    text-indent: 5rem;
+
+    a {
+      color: #000;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      grid-gap: .5rem;
+      transition: color 150ms ease-in-out;
+
+      mat-icon {
+        font-size: 1.6rem;
+        text-indent: initial;
+        transition: transform 150ms ease-in-out;
+      }
+
+      span {
+        text-decoration: underline;
+      }
+    }
+
+    a:hover {
+      color: #f57c00;
+    }
+
+    a:hover > mat-icon {
+      transform: scale(1.2);
+    }
+  }
+}
