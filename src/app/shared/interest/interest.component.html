@@ -13,7 +13,7 @@
         <mat-label>Taxa de juros</mat-label>
         <mat-hint *ngIf="error(fee, 2)">0.01 a 100</mat-hint>
         <span matSuffix>%</span>
-        <input matInput type="text" [(ngModel)]="fee" name="fee" mask="percent.2">
+        <input matInput type="text" [(ngModel)]="fee" name="fee" mask="percent.2" [dropSpecialCharacters]="false">
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Período</mat-label>
@@ -68,11 +68,11 @@
           <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
         </table>
-<!--        <mat-paginator showFirstLastButtons-->
-<!--                       [length]="period"-->
-<!--                       [pageSize]="6"-->
-<!--                       [pageSizeOptions]="periods.slice(0, period / 6)">-->
-<!--        </mat-paginator>-->
+        <!--        <mat-paginator showFirstLastButtons-->
+        <!--                       [length]="period"-->
+        <!--                       [pageSize]="6"-->
+        <!--                       [pageSizeOptions]="periods.slice(0, period / 6)">-->
+        <!--        </mat-paginator>-->
       </div>
       <button mat-raised-button color="warn" (click)="back()">Voltar</button>
     </div>
