@@ -8,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
                 <app-nav></app-nav>
               </mat-toolbar>
             `,
-  styles:   ["mat-toolbar { justify-content: space-between; }"]
+  styles:   ["mat-toolbar { box-shadow: 0 0 .5rem #121212; justify-content: space-between; }"]
 })
 export class HeaderComponent implements OnInit {
   title = "Cálculo de Juros";
