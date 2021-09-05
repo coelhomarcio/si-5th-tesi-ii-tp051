@@ -60,3 +60,14 @@ body {
     }
   }
 }
+
+@media (min-width: 768px) {
+  div.main-container {
+    display: flex;
+    justify-content: center;
+
+    div.main-content {
+      width: 70%;
+    }
+  }
+}
